@@ -1,4 +1,4 @@
-package com.xbl.ecommerce.modules;
+package com.xbl.ecommerce.index;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

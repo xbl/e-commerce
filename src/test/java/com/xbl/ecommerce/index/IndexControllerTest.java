@@ -1,4 +1,4 @@
-package com.xbl.ecommerce.modules;
+package com.xbl.ecommerce.index;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
