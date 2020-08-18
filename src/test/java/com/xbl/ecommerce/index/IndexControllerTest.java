@@ -29,6 +29,6 @@ public class IndexControllerTest {
         this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(content().string(containsString("hello")));
+                .andExpect(content().json("{\"id\":2,\"name\":\"Sony Mobile\"}"));
     }
 }

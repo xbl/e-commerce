@@ -1,0 +1,5 @@
+CREATE TABLE `index` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`name` varchar(11) COLLATE utf8_bin NOT NULL DEFAULT '',
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
