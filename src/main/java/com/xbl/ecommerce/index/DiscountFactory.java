@@ -16,7 +16,7 @@ public class DiscountFactory {
     }
 
     public Discount getInstance() {
-        if (manager.isActive(new NamedFeature("FOO"))) {
+        if (manager.isActive(new NamedFeature("FULL_REDUCTION_DISCOUNT"))) {
             return new FullReductionDiscount(100, 10);
         }
         return new NinetyPercentDiscount();
