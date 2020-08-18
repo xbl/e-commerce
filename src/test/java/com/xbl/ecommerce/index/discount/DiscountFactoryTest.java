@@ -21,7 +21,7 @@ public class DiscountFactoryTest {
     }
 
     @Test
-    public void given_toggle_active_when_getInstance_return_NinetyPercentDiscount() {
+    public void given_toggle_active_when_getInstance_return_PercentDiscount() {
 
         TestFeatureManager featureManager = new TestFeatureManager(ECommerceFeatures.class);
         featureManager.disable(ECommerceFeatures.FULL_REDUCTION_DISCOUNT);
