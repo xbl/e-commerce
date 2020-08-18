@@ -29,6 +29,6 @@ public class DiscountFactoryTest {
         DiscountFactory discountFactory = new DiscountFactory(featureManager);
         Discount discount = discountFactory.getInstance();
 
-        assertEquals(true, discount instanceof NinetyPercentDiscount);
+        assertEquals(true, discount instanceof PercentDiscount);
     }
 }

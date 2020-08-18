@@ -1,8 +1,10 @@
 package com.xbl.ecommerce.index.discount;
 
-public class NinetyPercentDiscount implements Discount {
-
-    private double off = 0.9;
+public class PercentDiscount implements Discount {
+    private double off;
+    public PercentDiscount(double off) {
+        this.off = off;
+    }
 
     @Override
     public double calculate(double price, int count) {
