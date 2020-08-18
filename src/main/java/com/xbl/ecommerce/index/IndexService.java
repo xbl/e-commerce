@@ -1,6 +1,7 @@
 package com.xbl.ecommerce.index;
 
 import com.xbl.ecommerce.index.discount.Discount;
+import com.xbl.ecommerce.index.discount.DiscountFactory;
 import com.xbl.ecommerce.index.entity.Index;
 import org.springframework.stereotype.Component;
 

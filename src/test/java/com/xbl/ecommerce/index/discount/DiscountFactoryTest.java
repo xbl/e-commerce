@@ -1,9 +1,6 @@
-package com.xbl.ecommerce.index;
+package com.xbl.ecommerce.index.discount;
 
 import com.xbl.ecommerce.ECommerceFeatures;
-import com.xbl.ecommerce.index.discount.Discount;
-import com.xbl.ecommerce.index.discount.FullReductionDiscount;
-import com.xbl.ecommerce.index.discount.NinetyPercentDiscount;
 import org.junit.jupiter.api.Test;
 import org.togglz.testing.TestFeatureManager;
 
