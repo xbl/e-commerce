@@ -12,19 +12,13 @@ import org.togglz.core.util.NamedFeature;
 public class IndexController {
 
     private IndexService indexService;
-    private FeatureManager manager;
 
-    public IndexController(IndexService indexService, FeatureManager manager) {
+    public IndexController(IndexService indexService) {
         this.indexService = indexService;
-        this.manager = manager;
     }
 
     @RequestMapping(value="/", method= RequestMethod.GET)
     public Index index() {
-        Index index = this.indexService.get(2);
-        if (manager.isActive(new NamedFeature("FOO"))) {
-            index.setName(index.getName() + " is active");
-        }
-        return index;
+        return indexService.get(2);
     }
 }
