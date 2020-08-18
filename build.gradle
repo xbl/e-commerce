@@ -17,6 +17,11 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
+	// togglz
+	implementation("org.togglz:togglz-spring-boot-starter:2.6.1.Final")
+	// togglz admin client
+	implementation("org.togglz:togglz-console:2.6.1.Final")
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.3'
