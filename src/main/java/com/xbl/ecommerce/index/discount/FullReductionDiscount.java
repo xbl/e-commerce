@@ -8,7 +8,6 @@ public class FullReductionDiscount implements Discount {
         this.reduction = reduction;
     }
 
-
     @Override
     public double calculate(double price, int count) {
         double result = price * count;
