@@ -4,8 +4,6 @@ import com.xbl.ecommerce.index.entity.Index;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.togglz.core.manager.FeatureManager;
-import org.togglz.core.util.NamedFeature;
 
 @RestController
 @RequestMapping(value="/")
