@@ -19,4 +19,9 @@ public class IndexController {
     public Index index() {
         return indexService.get(2);
     }
+
+    @RequestMapping(value="/discount", method= RequestMethod.GET)
+    public double discount() {
+        return indexService.getDiscount();
+    }
 }

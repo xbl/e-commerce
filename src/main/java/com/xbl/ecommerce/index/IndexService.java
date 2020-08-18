@@ -1,25 +1,27 @@
 package com.xbl.ecommerce.index;
 
+import com.xbl.ecommerce.index.discount.Discount;
 import com.xbl.ecommerce.index.entity.Index;
 import org.springframework.stereotype.Component;
-import org.togglz.core.manager.FeatureManager;
-import org.togglz.core.util.NamedFeature;
 
 @Component
 public class IndexService {
     private IndexRepository indexRepository;
-    private FeatureManager manager;
+    private DiscountFactory factory;
 
-    public IndexService(IndexRepository indexRepository, FeatureManager manager) {
+    public IndexService(IndexRepository indexRepository, DiscountFactory factory) {
         this.indexRepository = indexRepository;
-        this.manager = manager;
+        this.factory = factory;
     }
 
     public Index get(Integer id) {
-        Index index = indexRepository.get(id);
-        if (manager.isActive(new NamedFeature("FOO"))) {
-            index.setName(index.getName() + " is active");
-        }
-        return index;
+        return indexRepository.get(id);
+    }
+
+    public double getDiscount() {
+        double price = 120;
+        int count = 1;
+        Discount discount = factory.getInstance();
+        return discount.calculate(price, count);
     }
 }
