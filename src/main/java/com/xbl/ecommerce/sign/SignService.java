@@ -4,12 +4,17 @@ public class SignService {
     private int DEFAULT_POINT = 1;
     private int MAX_POINT = 7;
     private int HOLIDAY_INCREMENT = 1;
+    SignRepository signRepository;
+
+    public SignService(SignRepository signRepository) {
+        this.signRepository = signRepository;
+    }
+
     public SignVo sign() {
-        SignVo signVo = null;
-        Sign lastSign = getLastSign();
+        Sign lastSign = signRepository.getLastSign();
         boolean continues = lastSign.getContinues();
-        int totalPoint = getTotalPoint();
-        boolean isHoliday = getIsHoliday();
+        int totalPoint = signRepository.getTotalPoint();
+        boolean isHoliday = signRepository.getIsHoliday();
         boolean repeat = lastSign.getRepeat();
         if (repeat) {
             return getRepeatSignVo(lastSign, totalPoint);
@@ -18,15 +23,17 @@ public class SignService {
         if (isHoliday) {
             point += HOLIDAY_INCREMENT;
         }
+        SignVo signVo = null;
         if (!continues) {
-            return getNotContinuesSignVo(totalPoint, point);
+            signVo = getNotContinuesSignVo(totalPoint, point);
         }
 
         if (continues) {
-            int signCount = getSignCount();
-            return getContinuesSignVo(totalPoint, signCount, isHoliday);
+            int signCount = signRepository.getSignCount();
+            signVo = getContinuesSignVo(totalPoint, signCount, isHoliday);
         }
-        return null;
+        signRepository.save(signVo);
+        return signVo;
     }
 
     private SignVo getContinuesSignVo(int totalPoint, int signCount, boolean isHoliday) {
@@ -62,18 +69,18 @@ public class SignService {
     }
 
     public boolean getIsHoliday() {
-        return false;
+        return signRepository.getIsHoliday();
     }
 
     public int getSignCount() {
-        return 0;
+        return signRepository.getSignCount();
     }
 
     public int getTotalPoint() {
-        return 0;
+        return signRepository.getTotalPoint();
     }
 
     public Sign getLastSign() {
-        return new Sign();
+        return signRepository.getLastSign();
     }
 }
