@@ -12,7 +12,6 @@ public class SignService {
 
     public SignVo sign() {
         Sign lastSign = signRepository.getLastSign();
-        boolean continues = lastSign.getContinues();
         int totalPoint = signRepository.getTotalPoint();
         boolean isHoliday = signRepository.getIsHoliday();
         boolean repeat = lastSign.getRepeat();
@@ -24,6 +23,7 @@ public class SignService {
             point += HOLIDAY_INCREMENT;
         }
         SignVo signVo = null;
+        boolean continues = lastSign.getContinues();
         if (!continues) {
             signVo = getNotContinuesSignVo(totalPoint, point);
         }

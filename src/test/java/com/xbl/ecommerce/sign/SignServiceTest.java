@@ -119,6 +119,7 @@ public class SignServiceTest {
         expectedSignVo.setTotalPoint(35);
 
         assertEquals(expectedSignVo, signVo);
+        verify(signRepository).save(signVo);
     }
 
     @Test
@@ -126,10 +127,10 @@ public class SignServiceTest {
     public void given_sign_1_day_And_holiday_when_called_sign_Then_point_was_2_and_total_point_2() {
         SignRepository signRepository = spy(SignRepository.class);
         SignService signService = new SignService(signRepository);
-        when(signService.getSignCount()).thenReturn(1);
-        when(signService.getTotalPoint()).thenReturn(0);
+        when(signRepository.getSignCount()).thenReturn(1);
+        when(signRepository.getTotalPoint()).thenReturn(0);
         when(signRepository.getLastSign()).thenReturn(new Sign());
-        when(signService.signRepository.getIsHoliday()).thenReturn(true);
+        when(signRepository.getIsHoliday()).thenReturn(true);
         SignVo signVo = signService.sign();
 
         SignVo expectedSignVo = new SignVo();
@@ -137,6 +138,7 @@ public class SignServiceTest {
         expectedSignVo.setTotalPoint(2);
 
         assertEquals(expectedSignVo, signVo);
+        verify(signRepository).save(signVo);
     }
 
     @Test
@@ -144,11 +146,11 @@ public class SignServiceTest {
     public void given_sign_7_day_And_holiday_And_continue_when_called_sign_Then_point_was_7_and_total_point_28() {
         SignRepository signRepository = spy(SignRepository.class);
         SignService signService = new SignService(signRepository);
-        when(signService.getSignCount()).thenReturn(7);
-        when(signService.getTotalPoint()).thenReturn(21);
-        when(signService.signRepository.getIsHoliday()).thenReturn(true);
+        when(signRepository.getSignCount()).thenReturn(7);
+        when(signRepository.getTotalPoint()).thenReturn(21);
+        when(signRepository.getIsHoliday()).thenReturn(true);
         Sign lastSign = getYesterdaySign();
-        when(signService.getLastSign()).thenReturn(lastSign);
+        when(signRepository.getLastSign()).thenReturn(lastSign);
         SignVo signVo = signService.sign();
 
         SignVo expectedSignVo = new SignVo();
@@ -156,6 +158,7 @@ public class SignServiceTest {
         expectedSignVo.setTotalPoint(28);
 
         assertEquals(expectedSignVo, signVo);
+        verify(signRepository).save(signVo);
     }
 
     @Test
@@ -163,11 +166,11 @@ public class SignServiceTest {
     public void given_sign_2_day_And_holiday_And_continue_when_called_sign_Then_point_was_3_and_total_point_4() {
         SignRepository signRepository = spy(SignRepository.class);
         SignService signService = new SignService(signRepository);
-        when(signService.getSignCount()).thenReturn(2);
-        when(signService.getTotalPoint()).thenReturn(1);
-        when(signService.signRepository.getIsHoliday()).thenReturn(true);
+        when(signRepository.getSignCount()).thenReturn(2);
+        when(signRepository.getTotalPoint()).thenReturn(1);
+        when(signRepository.getIsHoliday()).thenReturn(true);
         Sign lastSign = getYesterdaySign();
-        when(signService.getLastSign()).thenReturn(lastSign);
+        when(signRepository.getLastSign()).thenReturn(lastSign);
         SignVo signVo = signService.sign();
 
         SignVo expectedSignVo = new SignVo();
@@ -175,19 +178,21 @@ public class SignServiceTest {
         expectedSignVo.setTotalPoint(4);
 
         assertEquals(expectedSignVo, signVo);
+        verify(signRepository).save(signVo);
     }
 
     @Test
     @DisplayName("Given：签到第1天 And 重复签到，When 签到，Then 积分为 1 And 总积分数 1，重复")
     public void given_sign_1_day_And_repeat_when_called_sign_Then_point_was_1_and_total_point_1_repeat_was_true() {
-        SignRepository signRepository = spy(SignRepository.class);
+        SignRepository signRepository = mock(SignRepository.class);
         SignService signService = new SignService(signRepository);
-        when(signService.getSignCount()).thenReturn(1);
-        when(signService.getTotalPoint()).thenReturn(1);
+        when(signRepository.getSignCount()).thenReturn(1);
+        when(signRepository.getTotalPoint()).thenReturn(1);
         Sign lastSign = new Sign();
         lastSign.setPoint(1);
         lastSign.setDate(new Date());
-        when(signService.getLastSign()).thenReturn(lastSign);
+        when(signRepository.getLastSign()).thenReturn(lastSign);
+
         SignVo signVo = signService.sign();
 
         SignVo expectedSignVo = new SignVo();
