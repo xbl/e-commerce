@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class SignVo {
+public class SignVo extends Sign {
     private int point;
     private int totalPoint;
     private boolean repeat;
